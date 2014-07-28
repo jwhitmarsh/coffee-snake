@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Coffee Snake</title>
+		<link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+		<link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+	</head>
+	<body role="document">
+		<header class="navbar navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Coffee Snake</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="#">New Game</a></li>
+						<li><a href="#" onclick="stop()">Stop</a></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<div class="" role="main">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-5">
+					<div id='play-wrap' class="panel panel-default" ></div>
+				</div>
+				<div class="col-md-6">
+					<h1 class="">Score</h1>
+					<hr>
+					<p class="lead"><span id="score-span">0</span></p>
+					<h1 class="page-header">Highscores</h1>
+					<ol id="highscores-list">
+					</ol>
+					<h1 class="page-header">Controls</h1>
+					<p class="lead">Seriousleh?! Ok, fine...</p>
+					<ul id="controls-list">
+						<li><span class="glyphicon glyphicon-arrow-up"></span><span>(Up arrow) Move Up. Duh.</span></li>
+						<li><span class="glyphicon glyphicon-arrow-down"></span><span>(Down arrow) Move Down, Albert</span></li>
+						<li><span class="glyphicon glyphicon-arrow-right"></span><span>(Right arrow) Surely by now...</span></li>
+						<li><span class="glyphicon glyphicon-arrow-left"></span><span>(Up arrow) Are you really still reading this?</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<input id='player'/>
+					<input id='score'/>
+					<button type="button" class="btn btn-default" onclick="saveHighscore()">Save</button>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="bower_components/jQuery/dist/jquery.js"></script>
+		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>
