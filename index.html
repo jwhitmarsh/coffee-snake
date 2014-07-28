@@ -24,6 +24,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="#">New Game</a></li>
 						<li><a href="#" onclick="stop()">Stop</a></li>
+						<li><a href='#' onclick="godMode()">GOD MODE</a></li>
 					</ul>
 				</div>
 			</div>
@@ -52,12 +53,30 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade">
-			<div class="modal-dialog">
+		<div id="highscore-modal" class="modal fade">
+			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
-					<input id='player'/>
-					<input id='score'/>
-					<button type="button" class="btn btn-default" onclick="saveHighscore()">Save</button>
+					<div class="modal-header">
+						<h4 class="modal-title">New High Score!</h4>
+					</div>
+					<div class="modal-body">
+						<p>Name: <input id='player'/></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" onclick="saveHighscore()">Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="crash-modal" class="modal fade">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">You Crashed!</h4>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" onclick="restart()">Play Again!</button>
+					</div>
 				</div>
 			</div>
 		</div>

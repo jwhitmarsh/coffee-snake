@@ -25,10 +25,12 @@ body {
 .snake-seg {
 	width: 10px;
 	height: 10px;
+	border: 1px solid #e1daeb;
 	border-radius: 2px;
 	background-color: #6f5499;
 	float: left;
 	position: relative;
+	z-index: 10000;
 }
 .lead-seg{
 		background-color: #54996f !important;

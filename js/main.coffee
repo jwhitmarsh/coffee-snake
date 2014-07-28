@@ -16,6 +16,10 @@ container = $('#play-wrap')
 snakeSeg.addClass('snake-seg')
 
 $(->
+	startGame()
+)
+
+startGame = ->
 	lBounds = container.offset().left
 	rBounds = container.outerWidth() + lBounds - 10
 
@@ -76,7 +80,6 @@ $(->
 
 	if typeof(Storage) != "undefined"
 		loadHighscores()
-)
 
 moveSeg = (s, t, l) ->
 	offset = s.offset()
@@ -107,8 +110,11 @@ moveSeg = (s, t, l) ->
 	if leadSeg != s
 		isSelfCollision = collision(leadSeg, s)
 		if isSelfCollision
-			alert('Crashed!')
 			clearInterval(moveInterval)
+			if isTopScore(score)
+				showHighscoreModal()
+			else
+				showCrashModal()
 
 	
 	if prevSib.length != 0
@@ -197,27 +203,29 @@ stop = ->
 	clearInterval(moveInterval)
 
 loadHighscores = ->
+	$('#highscores-list').children().remove()
 	highscores = []
 	if localStorage.highscores
 		highscores = JSON.parse(localStorage.highscores)
 
 		if highscores.length > 1
-			highscores = highscores.sort((a,b)->
-				a[1] < b[1]
+			sortedScores = highscores.sort((a,b)->
+				b[1]-a[1]
 				)
 
+		console.log(sortedScores)		
 		i = 0
 
 		while i <= 5
-			if highscores[i]
-				displayHighscore highscores[i]
+			if sortedScores[i]
+				displayHighscore sortedScores[i]
 			i++
 
 displayHighscore = (highscore) ->
 	$('#highscores-list').append $('<li>').html(highscore[0] + ' <strong>' + highscore[1] + '</strong')
 
 saveHighscore = ->
-	score = [[$('#player').val()], $('#score').val()]
+	newHighscore = [[$('#player').val()], score]
 
 	if localStorage.highscores
 		scores = JSON.parse(localStorage.highscores)
@@ -225,10 +233,50 @@ saveHighscore = ->
 		scores = []
 		
 
-	scores.push(score);
+	scores.push(newHighscore);
 	localStorage.setItem('highscores', JSON.stringify(scores))
 
+	$('#highscore-modal').modal('hide')
 
+	loadHighscores()
+	restart()
 
+showHighscoreModal = ->
+	$('#highscore-modal').modal()
 
+isTopScore = (score) ->
+	if localStorage.highscores
+		scores = JSON.parse(localStorage.highscores)
+		filteredScores = scores.filter((x) ->
+			x[1] >= score
+			)
+		if filteredScores.length >= 5
+			return false
+		true
+	else
+		true
 
+showCrashModal = ->
+	$('#crash-modal').modal()
+
+restart = ->
+	$('#crash-modal').modal('hide')
+	stop()
+	moveTime = 150
+	score = 0
+	$('#score-span').text(score)
+	$('.snake-seg').remove()
+	startGame()	
+
+godMode = ->
+	$('#play-wrap').css('border', 'none')
+
+	$('.navbar').css('backgroundColor', '#00ff00')
+
+	lBounds = 0
+	rBounds = $(window).width()
+	tBounds = 0
+	bBounds = $(window).height()
+
+	moveTime = 82
+	setTimer()
