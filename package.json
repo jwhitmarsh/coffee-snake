@@ -1,0 +1,19 @@
+{
+  "name": "coffee-snake",
+  "version": "1.0.0",
+  "description": "<h1>Coffee Snake</h1> <p>Traditional Snake game, written in CoffeeScript, for HTML5 using Bootstrap & jQuery</p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwhitmarsh/coffee-snake.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jwhitmarsh/coffee-snake/issues"
+  },
+  "homepage": "https://github.com/jwhitmarsh/coffee-snake#readme"
+}
